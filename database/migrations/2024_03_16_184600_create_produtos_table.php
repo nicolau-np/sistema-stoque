@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('descricao');
             $table->decimal('preco_unitario');
-            $table->text('descricao')->nullable();
+            $table->string('estado')->default('on');
             $table->timestamps();
         });
     }
