@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+       'descricao',
+         'preco_unitario',
+          'descricao',
+    ];
+
+    public function itemStoque(){
+        return $this->hasMany(ItemStoque::class, 'produto_id');
+    }
 }

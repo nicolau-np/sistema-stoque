@@ -13,8 +13,15 @@ return new class extends Migration
     {
         Schema::create('stoques', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('contacto_id')->nullable();
+            $table->string('metodo_pagamento');
+            $table->decimal('total_pagar');
+            $table->string('estado')->default('off');
             $table->timestamps();
+
+            $table->foreign('contacto_id')->references('id')->on('contactos')->onDelete('cascade');
         });
+
     }
 
     /**
