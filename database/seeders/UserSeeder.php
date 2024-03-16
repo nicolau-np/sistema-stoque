@@ -15,10 +15,10 @@ class UserSeeder extends Seeder
             'nivel_acesso' => "admin",
             'password' => "stoque2024",
         ], [
-            'name' => "Alfredo",
-            'username' => "user.alfredo",
+            'name' => "Laurinda",
+            'username' => "laurinda.vilinga",
             'nivel_acesso' => "user",
-            'password' => "transporte001",
+            'password' => "stoque2024",
         ],
     ];
     /**

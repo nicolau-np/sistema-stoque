@@ -61,43 +61,36 @@
 
 
                 <!-- Nav Item - Charts -->
-                <li class="nav-item {{ $type == 'estudantes' ? 'active' : null }}">
-                    <a class="nav-link" href="/estudantes">
+                <li class="nav-item {{ $type == 'contactos' ? 'active' : null }}">
+                    <a class="nav-link" href="/contactos">
                         <i class="fas fa-fw fa-users"></i>
-                        <span>Estudantes</span></a>
+                        <span>Contactos</span></a>
                 </li>
 
                 <!-- Nav Item - Charts -->
-                <li class="nav-item {{ $type == 'users' ? 'active' : null }}">
-                    <a class="nav-link" href="/users">
-                        <i class="fas fa-fw fa-lock"></i>
-                        <span>Usuários</span></a>
+                <li class="nav-item {{ $type == 'produtos' ? 'active' : null }}">
+                    <a class="nav-link" href="/produtos">
+                        <i class="fas fa-fw fa-product-hunt"></i>
+                        <span>Produtos</span></a>
                 </li>
 
                 <!-- Nav Item - Charts -->
-                <li class="nav-item {{ $type == 'motoristas' ? 'active' : null }}">
-                    <a class="nav-link" href="/motoristas">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Motoristas</span></a>
+                <li class="nav-item {{ $type == 'entradas' ? 'active' : null }}">
+                    <a class="nav-link" href="/entradas">
+                        <i class="fas fa-fw fa-truck"></i>
+                        <span>Entradas</span></a>
                 </li>
 
                 <!-- Nav Item - Charts -->
-                <li class="nav-item {{ $type == 'viaturas' ? 'active' : null }}">
-                    <a class="nav-link" href="/viaturas">
-                        <i class="fas fa-fw fa-car"></i>
-                        <span>Viaturas</span></a>
+                <li class="nav-item {{ $type == 'saidas' ? 'active' : null }}">
+                    <a class="nav-link" href="/saidas">
+                        <i class="fas fa-fw fa-cart-shopping"></i>
+                        <span>Saídas</span></a>
                 </li>
 
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-
-                <!-- Nav Item - Tables -->
-                <li class="nav-item {{ $type == 'pagamentos' ? 'active' : null }}">
-                    <a class="nav-link" href="/pagamentos/create">
-                        <i class="fas fa-fw fa-money-bill"></i>
-                        <span>Pagamentos</span></a>
-                </li>
 
                 <!-- Nav Item - Tables -->
                 @if (Auth::user()->nivel_acesso == 'admin')
