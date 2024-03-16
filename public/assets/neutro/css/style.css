@@ -1,0 +1,38 @@
+.options-radios{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex: wrap;
+}
+
+.options-radios .option-radio{
+    box-shadow: 4px 2px 4px #c0c0c0;
+    border-radius: 5px;
+    color: #4B70DD;
+    width: 300px;
+    padding: 10px 20px;
+    background-color: #fff;
+}
+
+.options-radios .option-radio.indisponivel{
+    box-shadow: 4px 2px 4px #c0c0c0;
+    border-radius: 5px;
+    color: #fff;
+    width: 300px;
+    padding: 10px 20px;
+    background-color: #1c1b1b;
+}
+
+.options-radios .option-radio span{
+    font-weight: bold;
+}
+
+.options-radios input{
+    border: 2px solid #4B70DD;
+}
+
+.col-title span{
+    color: #4B70DD;
+    font-weight: bold;
+}
