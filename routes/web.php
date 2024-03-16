@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
-Route::resource('auth')->group(function () {
+Route::prefix('auth')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
     Route::post('login', [AuthController::class, 'logar'])->middleware('guest');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
