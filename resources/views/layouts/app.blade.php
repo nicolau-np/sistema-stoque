@@ -24,8 +24,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @livewireStyles()
-    @livewireScripts()
+
 </head>
 
 <body id="{{ $type == 'login' ? 'bg-gradient-primary' : 'page-top' }}">
@@ -44,7 +43,7 @@
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">SISTrans</div>
+                    <div class="sidebar-brand-text mx-3">SISToque</div>
                 </a>
 
                 <!-- Divider -->
@@ -353,7 +352,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; {{ 'Sistema de Controlo de Transporte ' . date('Y') }}</span>
+                            <span>Copyright &copy; {{ 'Sistema de Stoque ' . date('Y') }}</span>
                         </div>
                     </div>
                 </footer>
