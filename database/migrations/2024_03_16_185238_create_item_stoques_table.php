@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('item_stoques', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('stoque_id');
+            $table->unsignedBigInteger('stoque_id')->nullable();
             $table->unsignedBigInteger('produto_id');
             $table->decimal('preco_unitario')->nullable();
             $table->integer('quantidade');

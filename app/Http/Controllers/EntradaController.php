@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use App\Models\Stoque;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class EntradaController extends Controller
 {
@@ -26,11 +27,12 @@ class EntradaController extends Controller
      */
     public function create()
     {
+        $produtos = Produto::all();
         $title = 'SISTEMA DE STOQUE';
         $menu = 'Entradas';
         $type = 'entradas';
 
-        return view('entradas.create', compact('title', 'menu', 'type'));
+        return view('entradas.create', compact('title', 'menu', 'type', 'produtos'));
     }
 
     /**
@@ -83,6 +85,22 @@ class EntradaController extends Controller
 
         $produto = Produto::findOrFail($request->produto);
 
-        
+        if (Session::has("lista_de_produtos.$request->produto")) {
+            $quantidade = Session::get("lista_de_produtos.$request->produto.quantidade") + 1;
+            Session::put("lista_de_produtos.$request->produto.quantidade", $quantidade);
+        } else {
+            /**definir os valores iniciais */
+            $quantidade = 1;
+            $lista_de_produtos = [
+                'produto_id' => $produto->id,
+                'quantidade' => $quantidade,
+                'descricao' => $produto->descricao,
+            ];
+            Session::put("lista_de_produtos.$request->produto", $lista_de_produtos);
+        }
+
+        return back()->with('success', "Produto adicionado com sucesso");
     }
+
+
 }

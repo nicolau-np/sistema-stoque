@@ -21,7 +21,7 @@
                             <select name="produto" class="form-control">
                                 <option value="" hidden>Produto</option>
                                 @foreach ($produtos as $produto)
-                                <option value="{{ $produto->id }}">{{ $produto->descricao }}</option>
+                                    <option value="{{ $produto->id }}">{{ $produto->descricao }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('produto'))
@@ -42,29 +42,30 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Produto</th>
-            <th>Quantidade</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (session('produtos') as $kay=>$item)
-        <tr>
-            <th></th>
-            <th>{{ $item['descricao'] }}</th>
-            <th>{{ $item['quantidade'] }}</th>
-            <td>
-                <a href="/entradas/remover-item" class="btn btn-sm btn-danger">Eliminar</a>
-            </td>
-        </tr>
-        @endforeach
-
-    </tbody>
-</table>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (session('lista_de_produtos'))
+                                @foreach (session('lista_de_produtos') as $kay => $item)
+                                    <tr>
+                                        <th></th>
+                                        <th>{{ $item['descricao'] }}</th>
+                                        <th>{{ $item['quantidade'] }}</th>
+                                        <td>
+                                            <a href="/entradas/remover-item" class="btn btn-sm btn-danger">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
