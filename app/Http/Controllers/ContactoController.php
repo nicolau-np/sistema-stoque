@@ -76,7 +76,19 @@ class ContactoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $contacto = Contacto::findOrFail($id);
+
+        $this->validate($request, [
+            'descricao'=>'required|string',
+            'tipo'=>'required|string',
+            'morada'=>'required|string',
+            'provincia'=>'required|string',
+            'municipio'=>'required|string',
+        ],[],[]);
+
+        $contacto->update($request->all());
+
+        return back()->with('success', "Feito com sucesso");
     }
 
     /**
@@ -84,6 +96,9 @@ class ContactoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $contacto = Contacto::findOrFail($id);
+        $contacto->delete();
+
+        return redirect('/contactos')->with('success', "Eliminado com sucesso");
     }
 }

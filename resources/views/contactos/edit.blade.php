@@ -65,7 +65,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="">Tipo de contacto <span class="text-danger">*</span></label>
                             <select name="tipo" class="form-control">
-                                <option value="" hidden>Tipo de contacto</option>
+                                <option value="{{ $contacto->tipo }}" hidden>{{ $contacto->tipo }}</option>
                                 <option value="Cliente" {{ old('tipo')=='Cliente'? 'selected': null }}>Cliente</option>
                                 <option value="Fornecedor" {{ old('tipo')=='Fornecedor'? 'selected': null }}>Fornecedor</option>
                             </select>
