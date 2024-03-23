@@ -4,13 +4,13 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">{{ 'Adicionar Produtos' }}</h1>
+            <h1 class="h3 mb-0 text-gray-800">{{ 'Definir Contacto' }}</h1>
         </div>
 
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form method="POST" action="/entradas/adicionar-item">
+                <form method="POST" action="/entradas">
                     @method('POST')
                     @csrf
 
@@ -18,28 +18,19 @@
                         @include('include.message')
 
                         <div class="col-md-4 mb-3">
-                            <select name="produto" class="form-control">
-                                <option value="" hidden>Produto</option>
-                                @foreach ($produtos as $produto)
-                                    <option value="{{ $produto->id }}">{{ $produto->descricao }}</option>
+                            <select name="contacto" class="form-control">
+                                <option value="" hidden>Fornecedor</option>
+                                @foreach ($contactos as $contacto)
+                                    <option value="{{ $contacto->id }}">{{ $contacto->descricao }}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('produto'))
-                                <span class="text-danger">{{ $errors->first('produto') }}</span>
-                            @endif
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                           <input type="number" class="form-control" name="quantidade" placeholder="Qtd."/>
-                            @if ($errors->has('quantidade'))
-                                <span class="text-danger">{{ $errors->first('quantidade') }}</span>
+                            @if ($errors->has('contacto'))
+                                <span class="text-danger">{{ $errors->first('contacto') }}</span>
                             @endif
                         </div>
 
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-success">Adicionar</button>
-                            &nbsp;&nbsp;&nbsp;
-                            <a href="/entradas/definir-contacto" class="btn btn-primary">Conculir</a>
+                            <button type="submit" class="btn btn-primary">Finalizar</button>
                         </div>
                     </div>
 

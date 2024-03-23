@@ -34,7 +34,8 @@ Route::resource('contactos', ContactoController::class);
 
 Route::resource('entradas', EntradaController::class);
 Route::post('entradas/adicionar-item', [EntradaController::class, 'adicionarItem']);
-Route::post('entradas/remover-item', [EntradaController::class, 'removerItem']);
+Route::get('entradas/remover-item/{id}', [EntradaController::class, 'removerItem']);
+Route::get('entradas/definir-contacto', [EntradaController::class, 'definirContacto']);
 
 Route::resource('saidas', SaidaController::class);
 
