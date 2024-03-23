@@ -32,9 +32,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Descrição</th>
-                                <th>Preço Unitário</th>
-                                <th>Estado</th>
+                                <th>Data do movimento</th>
+                                <th>Fornecedor</th>
+                                <th>Total de Produtos</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -42,9 +42,9 @@
                             @foreach ($entradas as $entrada)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $entrada->descricao }}</td>
-                                    <td>{{ number_format($entrada->preco_unitario,2,',','.') }}</td>
-                                    <td>{{ $entrada->estado }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($entrada->data_movimento)) }}</td>
+                                    <td>{{ $entrada->contacto->descricao }}</td>
+                                    <td>{{ $entrada->itemStoque->count() }}</td>
                                     <td>
                                         <a href="/entradas/{{ $entrada->id }}/edit" class="btn btn-primary">Editar</a>
                                        <form action="/entradas/{{ $entrada->id }}" method="POST">

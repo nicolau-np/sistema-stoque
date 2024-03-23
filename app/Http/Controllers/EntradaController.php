@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
+use App\Models\Stoque;
 use Illuminate\Http\Request;
 
 class EntradaController extends Controller
@@ -11,7 +13,12 @@ class EntradaController extends Controller
      */
     public function index()
     {
-        //
+        $entradas = Stoque::paginate(10);
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Entradas';
+        $type = 'entradas';
+
+        return view('entradas.index', compact('title', 'menu', 'type', 'entradas'));
     }
 
     /**
@@ -19,7 +26,11 @@ class EntradaController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Entradas';
+        $type = 'entradas';
+
+        return view('entradas.create', compact('title', 'menu', 'type'));
     }
 
     /**
@@ -60,5 +71,18 @@ class EntradaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function adicionarItem(Request $request)
+    {
+        $this->validate($request, [
+            'produto' => 'required|exists:produtos,id'
+        ]);
+
+        $lista_de_produtos = [];
+
+        $produto = Produto::findOrFail($request->produto);
+
+        
     }
 }

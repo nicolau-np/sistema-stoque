@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stoques', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('contacto_id')->nullable();
-            $table->string('metodo_pagamento');
+            $table->string('metodo_pagamento')->nullable();
             $table->decimal('total_pagar')->nullable();
             $table->string('tipo');//Entrada ou saida
             $table->date('data_movimento')->nullable();
