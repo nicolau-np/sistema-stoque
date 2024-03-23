@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contacto;
 use Illuminate\Http\Request;
 
 class ContactoController extends Controller
@@ -11,7 +12,12 @@ class ContactoController extends Controller
      */
     public function index()
     {
-        //
+        $contactos = Contacto::paginate(10);
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Contactos';
+        $type = 'contactos';
+
+        return view('contactos.index', compact('title','menu','type','contactos'));
     }
 
     /**
@@ -19,7 +25,11 @@ class ContactoController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Contactos';
+        $type = 'contactos';
+
+        return view('contactos.create', compact('title','menu','type'));
     }
 
     /**
@@ -27,7 +37,13 @@ class ContactoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'descricao'=>,
+            'tipo',
+            'morada',
+            'provincia',
+            'municipio',
+        ],[],[]);
     }
 
     /**

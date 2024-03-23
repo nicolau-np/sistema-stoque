@@ -10,7 +10,7 @@ class Contacto extends Model
     use HasFactory;
 
     protected $fillable = [
-        'descricao',
+            'descricao',
             'tipo',//fornecedor ou cliente
             'telefone',
             'morada',
