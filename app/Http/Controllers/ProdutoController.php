@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -11,7 +12,12 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        $produtos = Produto::paginate(10);
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Produtos';
+        $type = 'produtos';
+
+        return view('produtos.index', compact('title','menu','type','produtos'));
     }
 
     /**
@@ -19,7 +25,12 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Produtos';
+        $type = 'produtos';
+
+        return view('produtos.create', compact('title','menu','type'));
     }
 
     /**
@@ -27,7 +38,14 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'descricao'=>'required|string',
+            'preco_unitario'=>'required|numeric|min:1'
+        ],[],[]);
+
+        $produto = Produto::create($request->all());
+
+        return back()->with('success', "Feito com sucesso");
     }
 
     /**
@@ -43,7 +61,12 @@ class ProdutoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Produtos';
+        $type = 'produtos';
+
+        return view('produtos.edit', compact('title','menu','type', 'produto'));
     }
 
     /**
@@ -51,7 +74,16 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+
+        $this->validate($request, [
+            'descricao'=>'required|string',
+            'preco_unitario'=>'required|numeric|min:1'
+        ],[],[]);
+
+        $produto->update($request->all());
+
+        return back()->with('success', "Feito com sucesso");
     }
 
     /**
@@ -59,6 +91,10 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+
+        $produto->delete();
+
+        return redirect('/produtos')->with('success', "Feito com sucesso");
     }
 }

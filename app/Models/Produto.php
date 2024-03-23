@@ -12,7 +12,7 @@ class Produto extends Model
     protected $fillable = [
        'descricao',
          'preco_unitario',
-          'descricao',
+          'estado',
     ];
 
     public function itemStoque(){
