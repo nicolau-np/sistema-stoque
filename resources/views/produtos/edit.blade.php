@@ -10,7 +10,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form method="POST" action="/produtos">
+                <form method="POST" action="/produtos/{{ $produto->id }}">
                     @method('PUT')
                     @csrf
 
