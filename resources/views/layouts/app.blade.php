@@ -70,7 +70,7 @@
                 <!-- Nav Item - Charts -->
                 <li class="nav-item {{ $type == 'produtos' ? 'active' : null }}">
                     <a class="nav-link" href="/produtos">
-                        <i class="fas fa-fw fa-product-hunt"></i>
+                        <i class="fas fa-fw fa-tags"></i>
                         <span>Produtos</span></a>
                 </li>
 
