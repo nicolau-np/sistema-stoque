@@ -38,12 +38,16 @@ class ContactoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'descricao'=>,
-            'tipo',
-            'morada',
-            'provincia',
-            'municipio',
+            'descricao'=>'required|string',
+            'tipo'=>'required|string',
+            'morada'=>'required|string',
+            'provincia'=>'required|string',
+            'municipio'=>'required|string',
         ],[],[]);
+
+        $contacto = Contacto::create($request->all());
+
+        return back()->with('success', "Feito com sucesso");
     }
 
     /**
