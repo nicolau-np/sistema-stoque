@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('contacto_id')->nullable();
             $table->string('metodo_pagamento');
-            $table->decimal('total_pagar');
+            $table->decimal('total_pagar')->nullable();
+            $table->string('tipo');//Entrada ou saida
+            $table->date('data_movimento')->nullable();
             $table->string('estado')->default('off');
             $table->timestamps();
 

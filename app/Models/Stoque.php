@@ -9,18 +9,22 @@ class Stoque extends Model
 {
     use HasFactory;
 
-protected $fillable = [
-   'contacto_id',
-     'metodo_pagamento',
-      'total_pagar',
-     'estado',
-];
+    protected $fillable = [
+        'contacto_id',
+        'metodo_pagamento',
+        'total_pagar',
+        'tipo',
+        'data_movimento',
+        'estado',
+    ];
 
-public function contacto(){
-    return $this->belongsTo(Contacto::class, 'contacto_id');
-}
+    public function contacto()
+    {
+        return $this->belongsTo(Contacto::class, 'contacto_id');
+    }
 
-public function itemStoque(){
-    return $this->belongsTo(ItemStoque::class, 'stoque_id');
-}
+    public function itemStoque()
+    {
+        return $this->belongsTo(ItemStoque::class, 'stoque_id');
+    }
 }
