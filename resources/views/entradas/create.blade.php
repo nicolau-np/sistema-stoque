@@ -55,11 +55,11 @@
                             @if (session('lista_de_produtos'))
                                 @foreach (session('lista_de_produtos') as $kay => $item)
                                     <tr>
-                                        <th></th>
+                                        <th>{{ $item['produto_id'] }}</th>
                                         <th>{{ $item['descricao'] }}</th>
                                         <th>{{ $item['quantidade'] }}</th>
                                         <td>
-                                            <a href="/entradas/remover-item" class="btn btn-sm btn-danger">Eliminar</a>
+                                            <a href="/entradas/remover-item/{{ $item['produto_id'] }}" class="btn btn-sm btn-danger">Eliminar</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -102,5 +102,11 @@ class EntradaController extends Controller
         return back()->with('success', "Produto adicionado com sucesso");
     }
 
+    public function removerItem(string $produto_id){
+        Session::forget("lista_de_produtos.$produto_id");
+
+    return back()->with('success', "Intem removido com sucesso");
+    }
+
 
 }
