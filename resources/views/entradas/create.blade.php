@@ -39,7 +39,7 @@
                         <div class="col-md-3">
                             <button type="submit" class="btn btn-success">Adicionar</button>
                             &nbsp;&nbsp;&nbsp;
-                            <a href="/entradas/definir-contacto" class="btn btn-primary">Conculir</a>
+                            <a href="/entradas/definir-contacto" class="btn btn-primary">Concluir</a>
                         </div>
                     </div>
 

@@ -135,6 +135,7 @@ class EntradaController extends Controller
 
     public function definirContacto()
     {
+        dd('hello');
         if (!Session::has('lista_de_produtos'))
             return back()->with('error', "Deve adicionar produtos no carrinho");
 
