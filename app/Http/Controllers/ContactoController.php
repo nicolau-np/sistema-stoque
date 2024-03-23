@@ -63,7 +63,12 @@ class ContactoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $contacto = Contacto::findOrFail($id);
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Contactos';
+        $type = 'contactos';
+
+        return view('contactos.edit', compact('title','menu','type','contacto'));
     }
 
     /**

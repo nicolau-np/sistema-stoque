@@ -10,8 +10,8 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form method="POST" action="/contactos">
-                    @method('POST')
+                <form method="POST" action="/contactos/{{ $contacto->id }}">
+                    @method('PUT')
                     @csrf
 
                     <div class="row">
@@ -20,7 +20,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="">Descrição <span class="text-danger">*</span></label>
                             <input type="text" name="descricao" placeholder="Descrição" class="form-control"
-                                value="{{ old('descricao', null) }}" />
+                                value="{{ old('descricao', $contacto->descricao) }}" />
                             @if ($errors->has('descricao'))
                                 <span class="text-danger">{{ $errors->first('descricao') }}</span>
                             @endif
@@ -29,7 +29,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="">Província <span class="text-danger">*</span></label>
                             <input type="text" name="provincia" placeholder="Província" class="form-control"
-                                value="{{ old('provincia', null) }}" />
+                                value="{{ old('provincia', $contacto->provincia) }}" />
                             @if ($errors->has('provincia'))
                                 <span class="text-danger">{{ $errors->first('provincia') }}</span>
                             @endif
@@ -38,7 +38,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="">Município <span class="text-danger">*</span></label>
                             <input type="text" name="municipio" placeholder="Município" class="form-control"
-                                value="{{ old('municipio', null) }}" />
+                                value="{{ old('municipio', $contacto->municipio) }}" />
                             @if ($errors->has('municipio'))
                                 <span class="text-danger">{{ $errors->first('municipio') }}</span>
                             @endif
@@ -47,7 +47,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="">Morada <span class="text-danger">*</span></label>
                             <input type="text" name="morada" placeholder="Morada" class="form-control"
-                                value="{{ old('morada', null) }}" />
+                                value="{{ old('morada', $contacto->morada) }}" />
                             @if ($errors->has('morada'))
                                 <span class="text-danger">{{ $errors->first('morada') }}</span>
                             @endif
@@ -56,7 +56,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="">Nº de Telefone </label>
                             <input type="text" name="telefone" placeholder="Nº de Telefone" class="form-control"
-                                value="{{ old('telefone', null) }}" />
+                                value="{{ old('telefone', $contacto->telefone) }}" />
                             @if ($errors->has('telefone'))
                                 <span class="text-danger">{{ $errors->first('telefone') }}</span>
                             @endif

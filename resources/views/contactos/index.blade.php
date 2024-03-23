@@ -53,13 +53,12 @@
                                     <td>{{ $contacto->municipio }}</td>
                                     <td>
                                         <a href="/contactos/{{ $contacto->id }}/edit" class="btn btn-primary">Editar</a>
-                                       <!-- <form action="/contactos/{{ $contacto->id }}" method="POST">
+                                       <form action="/contactos/{{ $contacto->id }}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn btn-danger">Eliminar</button>
-                                        </form>-->
+                                        </form>
 
-                                        <a href="/contactos/{{ $contacto->id }}/viatura" class="btn btn-warning ml-2"><i class="fas fa-circle-plus"></i> Viatura</a>
                                     </td>
                                 </tr>
                             @endforeach
