@@ -43,7 +43,7 @@ class EntradaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'contacto' => 'required|exists:contactos,contacto',
+            'contacto' => 'required|exists:contactos,id',
         ], [], [
             'contacto' => 'Fornecedor',
         ]);
@@ -65,6 +65,8 @@ class EntradaController extends Controller
 
             ItemStoque::create($item_stoque);
         }
+Session::forget('lista_de_produtos');
+        return redirect('/entradas')->with('success', "Feito com sucesso");
     }
 
     /**
@@ -135,7 +137,6 @@ class EntradaController extends Controller
 
     public function definirContacto()
     {
-        dd('hello');
         if (!Session::has('lista_de_produtos'))
             return back()->with('error', "Deve adicionar produtos no carrinho");
 

@@ -32,10 +32,10 @@ Route::resource('produtos', ProdutoController::class);
 
 Route::resource('contactos', ContactoController::class);
 
-Route::resource('entradas', EntradaController::class);
 Route::post('entradas/adicionar-item', [EntradaController::class, 'adicionarItem']);
 Route::get('entradas/definir-contacto', [EntradaController::class, 'definirContacto']);
 Route::get('entradas/remover-item/{id}', [EntradaController::class, 'removerItem']);
+Route::resource('entradas', EntradaController::class);
 
 
 Route::resource('saidas', SaidaController::class);
