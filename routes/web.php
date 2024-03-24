@@ -31,11 +31,14 @@ Route::prefix('auth')->group(function () {
 Route::prefix('relatorios')->middleware('auth.admin')->group(function(){
     Route::get('/', [RelatorioController::class, 'index']);
     Route::prefix('venda')->group(function(){
+        Route::post('/', [RelatorioController::class, 'vendaPrint']);
         Route::get('create', [RelatorioController::class, 'vendaCreate']);
     });
 
     Route::prefix('compra')->group(function(){
+        Route::post('/', [RelatorioController::class, 'compraPrint']);
         Route::get('create', [RelatorioController::class, 'compraCreate']);
+        
     });
 
     Route::get('inventario', [RelatorioController::class, 'inventario']);
