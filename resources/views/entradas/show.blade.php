@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                    @foreach ($item_stoque as $item)
+                                    @foreach ($entrada->itemStoque as $item)
                                         <tr>
                                             <th>{{ $item->produto_id }}</th>
                                             <th>{{ $item->produto->descricao }}</th>

@@ -108,7 +108,7 @@ Session::forget('lista_de_produtos');
 
         $entrada->delete();
 
-        return back()->with('success', "Eliminado com sucesso");
+        return redirect('/entradas')->with('success', "Eliminada com sucesso");
     }
 
     public function adicionarItem(Request $request)
