@@ -25,6 +25,6 @@ class Stoque extends Model
 
     public function itemStoque()
     {
-        return $this->belongsTo(ItemStoque::class, 'stoque_id');
+        return $this->hasMany(ItemStoque::class, 'stoque_id');
     }
 }

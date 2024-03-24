@@ -74,7 +74,13 @@ Session::forget('lista_de_produtos');
      */
     public function show(string $id)
     {
-        //
+        $entrada = Stoque::findOrFail($id);
+
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Entradas';
+        $type = 'entradas';
+
+        return view('entradas.show', compact('title', 'menu', 'type', 'entrada'));
     }
 
     /**
@@ -98,7 +104,11 @@ Session::forget('lista_de_produtos');
      */
     public function destroy(string $id)
     {
-        //
+        $entrada = Stoque::findOrFail($id);
+
+        $entrada->delete();
+
+        return back()->with('success', "Eliminado com sucesso");
     }
 
     public function adicionarItem(Request $request)

@@ -34,6 +34,7 @@
                                 <th>#</th>
                                 <th>Data do movimento</th>
                                 <th>Fornecedor</th>
+                                <th>Total de Produtos</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -43,14 +44,11 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ date('d-m-Y', strtotime($entrada->data_movimento)) }}</td>
                                     <td>{{ $entrada->contacto->descricao }}</td>
+                                    <td>{{ $entrada->itemStoque->count() }}</td>
 
                                     <td>
-                                       <form action="/entradas/{{ $entrada->id }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                                        </form>
-
+                                        <a href="/entradas/{{ $entrada->id }}" class="btn btn-primary">Detalhes</a>
+                                      
                                     </td>
                                 </tr>
                             @endforeach
