@@ -16,7 +16,7 @@ class CompraController extends Controller
      */
     public function index()
     {
-        $compras = Stoque::where(['tipo' => "Compra", 'estado' => "on"])->orderBy('data_movimento', 'desc')->paginate(30);
+        $compras = Stoque::where(['tipo' => "Compra", 'estado' => "on"])->orderBy('created_at', 'desc')->paginate(30);
         $title = 'SISTEMA DE STOQUE';
         $menu = 'Compra';
         $type = 'compras';

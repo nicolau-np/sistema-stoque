@@ -13,13 +13,13 @@ class HomeController extends Controller
     public function index()
     {
         $produtos = Produto::all();
-        $saidas = Stoque::where(['tipo'=>"Entrada",'estado'=>'on'])->get();
+        $vendas = Stoque::where(['tipo'=>"Venda",'estado'=>'on'])->get();
         $contactos = Contacto::all();
         $users = User::all();
         $title = 'SISTEMA DE STOQUE';
         $menu = 'Home';
         $type = 'home';
 
-        return view('index', compact('title', 'menu', 'type', 'produtos', 'saidas', 'contactos', 'users'));
+        return view('index', compact('title', 'menu', 'type', 'produtos', 'vendas', 'contactos', 'users'));
     }
 }

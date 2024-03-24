@@ -16,7 +16,7 @@ class VendaController extends Controller
      */
     public function index()
     {
-        $vendas = Stoque::where(['tipo' => "Venda", 'estado' => "on"])->orderBy('data_movimento', 'desc')->paginate(30);
+        $vendas = Stoque::where(['tipo' => "Venda", 'estado' => "on"])->orderBy('created_at', 'desc')->paginate(30);
         $title = 'SISTEMA DE STOQUE';
         $menu = 'Venda';
         $type = 'vendas';
