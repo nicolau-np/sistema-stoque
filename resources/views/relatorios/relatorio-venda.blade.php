@@ -20,7 +20,6 @@
                 <th>Método de Pagamento</th>
                 <th>Total de Produtos</th>
                 <th>Total da Venda(Akz)</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -32,10 +31,7 @@
                     <td>{{ $venda->metodo_pagamento }}</td>
                     <td>{{ $venda->itemStoque->count() }}</td>
                     <td>{{ number_format($venda->total_pagar, 2, ',', '.') }}</td>
-                    <td>
-                        <a href="/vendas/{{ $venda->id }}" class="btn btn-primary">Detalhes</a>
-
-                    </td>
+                   
                 </tr>
             @endforeach
 
