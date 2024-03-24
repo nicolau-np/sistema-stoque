@@ -95,7 +95,7 @@
                 <!-- Nav Item - Tables -->
                 @if (Auth::user()->nivel_acesso == 'admin')
                     <li class="nav-item {{ $type == 'relatorios' ? 'active' : null }}">
-                        <a class="nav-link" href="/reports">
+                        <a class="nav-link" href="/relatorios">
                             <i class="fas fa-fw fa-file"></i>
                             <span>Relatórios</span></a>
                     </li>
