@@ -11,8 +11,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        dd('hello');
     }
 
-    
+
 }

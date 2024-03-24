@@ -28,6 +28,10 @@ Route::prefix('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
 
+Route::prefix('relatorios', function(){
+    Route::get('/', [ReportController::class, 'index']);
+});
+
 Route::resource('produtos', ProdutoController::class);
 
 Route::resource('contactos', ContactoController::class);
@@ -44,6 +48,4 @@ Route::get('vendas/remover-item/{id}', [VendaController::class, 'removerItem']);
 Route::resource('vendas', VendaController::class);
 
 
-Route::prefix('reports', function(){
-    Route::get('/', [ReportController::class, 'index']);
-});
+
