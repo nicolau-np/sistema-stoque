@@ -31,6 +31,11 @@ class RelatorioController extends Controller
 
     public function vendaCreate()
     {
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Relatório de Venda';
+        $type = 'relatorios';
+
+        return view('relatorios.create-venda', compact('title', 'menu', 'type'));
     }
 
     public function compraCreate()
@@ -57,5 +62,22 @@ class RelatorioController extends Controller
 
         $pdf = PDF::loadView('relatorios.relatorio-compra', compact('data_inicial', 'data_final', 'compras'))->setPaper('A4', 'normal');
         return $pdf->stream("relatorio-compra.pdf");
+    }
+
+    public function vendaPrint(Request $request)
+    {
+        $this->validate($request, [
+            'data_inicial' => 'required|date',
+            'data_final' => 'required|date'
+        ]);
+
+        $vendas = Stoque::where('tipo', "Venda")
+            ->whereBetween('data_movimento', [$request->data_inicial, $request->data_final])
+            ->orderBy('data_movimento', 'desc')->get();
+        $data_inicial = $request->data_inicial;
+        $data_final = $request->data_final;
+
+        $pdf = PDF::loadView('relatorios.relatorio-venda', compact('data_inicial', 'data_final', 'vendas'))->setPaper('A4', 'normal');
+        return $pdf->stream("relatorio-venda.pdf");
     }
 }
