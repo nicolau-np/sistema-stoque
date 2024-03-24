@@ -28,9 +28,18 @@ Route::prefix('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
 
-Route::prefix('relatorios', function(){
+Route::prefix('relatorios')->middleware('auth.admin')->group(function(){
     Route::get('/', [RelatorioController::class, 'index']);
-})->middleware('auth.admin');
+    Route::prefix('venda')->group(function(){
+        Route::get('create', [RelatorioController::class, 'vendaCreate']);
+    });
+
+    Route::prefix('compra')->group(function(){
+        Route::get('create', [RelatorioController::class, 'compraCreate']);
+    });
+
+    Route::get('inventario', [RelatorioController::class, 'inventario']);
+});
 
 Route::resource('produtos', ProdutoController::class);
 
