@@ -75,17 +75,17 @@
                 </li>
 
                 <!-- Nav Item - Charts -->
-                <li class="nav-item {{ $type == 'entradas' ? 'active' : null }}">
-                    <a class="nav-link" href="/entradas">
+                <li class="nav-item {{ $type == 'compras' ? 'active' : null }}">
+                    <a class="nav-link" href="/compras">
                         <i class="fas fa-fw fa-truck"></i>
-                        <span>Entradas</span></a>
+                        <span>Compra</span></a>
                 </li>
 
                 <!-- Nav Item - Charts -->
-                <li class="nav-item {{ $type == 'saidas' ? 'active' : null }}">
-                    <a class="nav-link" href="/saidas">
+                <li class="nav-item {{ $type == 'vendas' ? 'active' : null }}">
+                    <a class="nav-link" href="/vendas">
                         <i class="fas fa-fw fa-cart-shopping"></i>
-                        <span>Saídas</span></a>
+                        <span>Venda</span></a>
                 </li>
 
 

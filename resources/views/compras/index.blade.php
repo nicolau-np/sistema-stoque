@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-12">
                 @include('include.message')
-                <form action="/entradas/search" method="POST">
+                <form action="/compras/search" method="POST">
                 <div class="row mb-4">
 
                         <div class="col-md-8">
@@ -22,7 +22,7 @@
                             <button type="submit" class="btn btn-primary">Pesquisar</button>
                         </div>
                         <div class="col-md-2">
-                            <a href="/entradas/create" class="btn btn-success">Novo</a>
+                            <a href="/compras/create" class="btn btn-success">Nova</a>
                         </div>
 
                 </div>
@@ -39,16 +39,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($entradas as $entrada)
+                            @foreach ($compras as $compra)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($entrada->data_movimento)) }}</td>
-                                    <td>{{ $entrada->contacto->descricao }}</td>
-                                    <td>{{ $entrada->itemStoque->count() }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($compra->data_movimento)) }}</td>
+                                    <td>{{ $compra->contacto->descricao }}</td>
+                                    <td>{{ $compra->itemStoque->count() }}</td>
 
                                     <td>
-                                        <a href="/entradas/{{ $entrada->id }}" class="btn btn-primary">Detalhes</a>
-                                      
+                                        <a href="/compras/{{ $compra->id }}" class="btn btn-primary">Detalhes</a>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,7 +57,7 @@
                     </table>
                 </div>
                 <div class="paginate">
-            {{ $entradas->links() }}
+            {{ $compras->links() }}
                 </div>
 
             </div>

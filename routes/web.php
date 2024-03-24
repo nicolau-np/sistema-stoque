@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ContactoController;
-use App\Http\Controllers\EntradaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\SaidaController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,13 +32,13 @@ Route::resource('produtos', ProdutoController::class);
 
 Route::resource('contactos', ContactoController::class);
 
-Route::post('entradas/adicionar-item', [EntradaController::class, 'adicionarItem']);
-Route::get('entradas/definir-contacto', [EntradaController::class, 'definirContacto']);
-Route::get('entradas/remover-item/{id}', [EntradaController::class, 'removerItem']);
-Route::resource('entradas', EntradaController::class);
+Route::post('compras/adicionar-item', [CompraController::class, 'adicionarItem']);
+Route::get('compras/definir-contacto', [CompraController::class, 'definirContacto']);
+Route::get('compras/remover-item/{id}', [CompraController::class, 'removerItem']);
+Route::resource('compras', CompraController::class);
 
 
-Route::resource('saidas', SaidaController::class);
+Route::resource('vendas', VendaController::class);
 
 Route::prefix('reports', function(){
     Route::get('/', [ReportController::class, 'index']);

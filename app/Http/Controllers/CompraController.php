@@ -9,19 +9,19 @@ use App\Models\Stoque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class EntradaController extends Controller
+class CompraController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $entradas = Stoque::paginate(10);
+        $compras = Stoque::paginate(10);
         $title = 'SISTEMA DE STOQUE';
-        $menu = 'Entradas';
-        $type = 'entradas';
+        $menu = 'Compra';
+        $type = 'compras';
 
-        return view('entradas.index', compact('title', 'menu', 'type', 'entradas'));
+        return view('compras.index', compact('title', 'menu', 'type', 'compras'));
     }
 
     /**
@@ -31,10 +31,10 @@ class EntradaController extends Controller
     {
         $produtos = Produto::all();
         $title = 'SISTEMA DE STOQUE';
-        $menu = 'Entradas';
-        $type = 'entradas';
+        $menu = 'Compra';
+        $type = 'compras';
 
-        return view('entradas.create', compact('title', 'menu', 'type', 'produtos'));
+        return view('compras.create', compact('title', 'menu', 'type', 'produtos'));
     }
 
     /**
@@ -66,7 +66,7 @@ class EntradaController extends Controller
             ItemStoque::create($item_stoque);
         }
 Session::forget('lista_de_produtos');
-        return redirect('/entradas')->with('success', "Feito com sucesso");
+        return redirect('/compras')->with('success', "Feito com sucesso");
     }
 
     /**
@@ -74,13 +74,13 @@ Session::forget('lista_de_produtos');
      */
     public function show(string $id)
     {
-        $entrada = Stoque::findOrFail($id);
+        $compra = Stoque::findOrFail($id);
 
         $title = 'SISTEMA DE STOQUE';
-        $menu = 'Entradas';
-        $type = 'entradas';
+        $menu = 'Compra';
+        $type = 'compras';
 
-        return view('entradas.show', compact('title', 'menu', 'type', 'entrada'));
+        return view('compras.show', compact('title', 'menu', 'type', 'compra'));
     }
 
     /**
@@ -108,7 +108,7 @@ Session::forget('lista_de_produtos');
 
         $entrada->delete();
 
-        return redirect('/entradas')->with('success', "Eliminada com sucesso");
+        return redirect('/compras')->with('success', "Eliminada com sucesso");
     }
 
     public function adicionarItem(Request $request)
@@ -152,9 +152,9 @@ Session::forget('lista_de_produtos');
 
         $contactos = Contacto::where('tipo', "Fornecedor")->get();
         $title = 'SISTEMA DE STOQUE';
-        $menu = 'Entradas';
-        $type = 'entradas';
+        $menu = 'Compra';
+        $type = 'compras';
 
-        return view('entradas.definir-contacto', compact('title', 'menu', 'type', 'contactos'));
+        return view('compras.definir-contacto', compact('title', 'menu', 'type', 'contactos'));
     }
 }

@@ -16,10 +16,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-title mb-2"><span class="bold">Data de Movimento:</span>
-                            {{ date('d-m-Y', strtotime($entrada->data_movimento)) }}</div>
-                        <div class="col-title mb-2"><span>Fornecedor:</span> {{ $entrada->contacto->descricao }}</div>
+                            {{ date('d-m-Y', strtotime($compra->data_movimento)) }}</div>
+                        <div class="col-title mb-2"><span>Fornecedor:</span> {{ $compra->contacto->descricao }}</div>
                         <div class="col-title mb-2"><span>Total de Produtos:</span>
-                            {{ $entrada->itemStoque->count() }}</div>
+                            {{ $compra->itemStoque->count() }}</div>
 
                     <div class="table-responsive lista_de_produtos">
                         <table class="table table-striped">
@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                    @foreach ($entrada->itemStoque as $item)
+                                    @foreach ($compra->itemStoque as $item)
                                         <tr>
                                             <th>{{ $item->produto_id }}</th>
                                             <th>{{ $item->produto->descricao }}</th>
@@ -46,7 +46,7 @@
                         </div>
                     @if (Auth::user()->nivel_acesso == 'admin')
                         <div class="card-footer">
-                            <form action="/entradas/{{ $entrada->id }}" method="POST">
+                            <form action="/compras/{{ $compra->id }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger">Eliminar</button>

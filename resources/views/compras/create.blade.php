@@ -4,13 +4,13 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">{{ 'Definir Contacto' }}</h1>
+            <h1 class="h3 mb-0 text-gray-800">{{ 'Adicionar Produtos' }}</h1>
         </div>
 
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form method="POST" action="/entradas">
+                <form method="POST" action="/compras/adicionar-item">
                     @method('POST')
                     @csrf
 
@@ -18,19 +18,28 @@
                         @include('include.message')
 
                         <div class="col-md-4 mb-3">
-                            <select name="contacto" class="form-control">
-                                <option value="" hidden>Fornecedor</option>
-                                @foreach ($contactos as $contacto)
-                                    <option value="{{ $contacto->id }}">{{ $contacto->descricao }}</option>
+                            <select name="produto" class="form-control">
+                                <option value="" hidden>Produto</option>
+                                @foreach ($produtos as $produto)
+                                    <option value="{{ $produto->id }}">{{ $produto->descricao }}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('contacto'))
-                                <span class="text-danger">{{ $errors->first('contacto') }}</span>
+                            @if ($errors->has('produto'))
+                                <span class="text-danger">{{ $errors->first('produto') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                           <input type="number" class="form-control" name="quantidade" placeholder="Qtd."/>
+                            @if ($errors->has('quantidade'))
+                                <span class="text-danger">{{ $errors->first('quantidade') }}</span>
                             @endif
                         </div>
 
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary">Finalizar</button>
+                            <button type="submit" class="btn btn-success">Adicionar</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="/compras/definir-contacto" class="btn btn-primary">Concluir</a>
                         </div>
                     </div>
 
@@ -58,7 +67,7 @@
                                         <th>{{ $item['descricao'] }}</th>
                                         <th>{{ $item['quantidade'] }}</th>
                                         <td>
-                                            <a href="/entradas/remover-item/{{ $item['produto_id'] }}" class="btn btn-sm btn-danger">Eliminar</a>
+                                            <a href="/compras/remover-item/{{ $item['produto_id'] }}" class="btn btn-sm btn-danger">Eliminar</a>
                                         </td>
                                     </tr>
                                 @endforeach
