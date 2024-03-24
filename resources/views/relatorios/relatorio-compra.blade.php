@@ -10,28 +10,28 @@
 <h1>Relatório de Compra</h1>
 <p>Data Inicial: {{ date('d-m-Y', strtotime($data_inicial)) }}</p>
 <p>Data Final: {{ date('d-m-Y', strtotime($data_final)) }}</p>
+
 <table border="1" width="100%">
-<thead>
-    <tr>
-        <th>Descrição</th>
-        <th>Preço Unitário</th>
-        <th>Quantidade Existente</th>
-    </tr>
-</thead>
-<tbody>
-    @foreach ($produtos as $produto)
-    @php
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Data do movimento</th>
+            <th>Fornecedor</th>
+            <th>Total de Produtos</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($compras as $compra)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ date('d-m-Y', strtotime($compra->data_movimento)) }}</td>
+                <td>{{ $compra->contacto->descricao }}</td>
+                <td>{{ $compra->itemStoque->count() }}</td>
+            </tr>
+        @endforeach
 
-    @endphp
-    <tr>
-        <td>{{ $produto->descricao }}</td>
-        <td>{{ number_format($produto->preco_unitario, 2,',','.') }} Kz</td>
-
-        <td></td>
-    </tr>
-    @endforeach
-
-</tbody>
+    </tbody>
 </table>
+
 </body>
 </html>
