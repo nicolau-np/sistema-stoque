@@ -16,7 +16,7 @@ class CompraController extends Controller
      */
     public function index()
     {
-        $compras = Stoque::paginate(10);
+        $compras = Stoque::where(['tipo' => "Compra", 'estado' => "on"])->orderBy('data_movimento', 'desc')->paginate(30);
         $title = 'SISTEMA DE STOQUE';
         $menu = 'Compra';
         $type = 'compras';
@@ -51,7 +51,7 @@ class CompraController extends Controller
 
         $stoque = [
             'contacto_id' => $request->contacto,
-            'tipo' => "Entrada",
+            'tipo' => "Compra",
             'data_movimento' => date('Y-m-d'),
             'estado' => "on",
         ];
@@ -65,7 +65,7 @@ class CompraController extends Controller
 
             ItemStoque::create($item_stoque);
         }
-Session::forget('lista_de_produtos');
+        Session::forget('lista_de_produtos');
         return redirect('/compras')->with('success', "Feito com sucesso");
     }
 

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contacto;
+use App\Models\ItemStoque;
+use App\Models\Produto;
+use App\Models\Stoque;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class VendaController extends Controller
 {
@@ -11,7 +16,12 @@ class VendaController extends Controller
      */
     public function index()
     {
-        //
+        $vendas = Stoque::where(['tipo' => "Venda", 'estado' => "on"])->orderBy('data_movimento', 'desc')->paginate(30);
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Venda';
+        $type = 'vendas';
+
+        return view('vendas.index', compact('title', 'menu', 'type', 'vendas'));
     }
 
     /**
@@ -19,7 +29,12 @@ class VendaController extends Controller
      */
     public function create()
     {
-        //
+        $produtos = Produto::all();
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Venda';
+        $type = 'vendas';
+
+        return view('vendas.create', compact('title', 'menu', 'type', 'produtos'));
     }
 
     /**
@@ -27,7 +42,31 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'contacto' => 'required|exists:contactos,id',
+        ], [], [
+            'contacto' => 'Fornecedor',
+        ]);
+        $item_stoque = [];
+
+        $stoque = [
+            'contacto_id' => $request->contacto,
+            'tipo' => "Venda",
+            'data_movimento' => date('Y-m-d'),
+            'estado' => "on",
+        ];
+
+        $stoque = Stoque::create($stoque);
+        $item_stoque['stoque_id'] = $stoque->id;
+
+        foreach (Session::get('lista_de_produtos') as $key => $item) {
+            $item_stoque['produto_id'] = $item['produto_id'];
+            $item_stoque['quantidade'] = $item['quantidade'];
+
+            ItemStoque::create($item_stoque);
+        }
+        Session::forget('lista_de_produtos');
+        return redirect('/vendas')->with('success', "Feito com sucesso");
     }
 
     /**
@@ -35,7 +74,13 @@ class VendaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $venda = Stoque::findOrFail($id);
+
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Venda';
+        $type = 'vendas';
+
+        return view('vendas.show', compact('title', 'menu', 'type', 'venda'));
     }
 
     /**
@@ -59,6 +104,58 @@ class VendaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $entrada = Stoque::findOrFail($id);
+
+        $entrada->delete();
+
+        return redirect('/vendas')->with('success', "Eliminada com sucesso");
+    }
+
+    public function adicionarItem(Request $request)
+    {
+        $this->validate($request, [
+            'produto' => 'required|exists:produtos,id',
+            'quantidade' => 'required|integer|min:1',
+        ]);
+
+        $lista_de_produtos = [];
+
+        $produto = Produto::findOrFail($request->produto);
+
+        if (Session::has("lista_de_produtos.$request->produto")) {
+            $quantidade = Session::get("lista_de_produtos.$request->produto.quantidade") + $request->quantidade;
+            Session::put("lista_de_produtos.$request->produto.quantidade", $quantidade);
+        } else {
+            /**definir os valores iniciais */
+            $lista_de_produtos = [
+                'produto_id' => $produto->id,
+                'quantidade' => $request->quantidade,
+                'descricao' => $produto->descricao,
+                'preco_unitario' => $produto->preco_unitario,
+            ];
+            Session::put("lista_de_produtos.$request->produto", $lista_de_produtos);
+        }
+
+        return back()->with('success', "Produto adicionado com sucesso");
+    }
+
+    public function removerItem(string $produto_id)
+    {
+        Session::forget("lista_de_produtos.$produto_id");
+
+        return back()->with('success', "Intem removido com sucesso");
+    }
+
+    public function definirContacto()
+    {
+        if (!Session::has('lista_de_produtos'))
+            return back()->with('error', "Deve adicionar produtos no carrinho");
+
+        $contactos = Contacto::where('tipo', "Cliente")->get();
+        $title = 'SISTEMA DE STOQUE';
+        $menu = 'Venda';
+        $type = 'vendas';
+
+        return view('vendas.definir-contacto', compact('title', 'menu', 'type', 'contactos'));
     }
 }
