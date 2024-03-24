@@ -50,11 +50,15 @@ class VendaController extends Controller
             'metodo_pagamento' => "Método de Pagamento",
         ]);
         $item_stoque = [];
+        $total_pagar = 0;
+        foreach (Session::get('lista_de_produtos') as $key => $item) {
+            $total_pagar = $total_pagar + ($item['quantidade'] * $item['preco_unitario']);
+        }
 
         $stoque = [
             'contacto_id' => $request->contacto,
             'tipo' => "Venda",
-            'total_pagar' => "",
+            'total_pagar' => $total_pagar,
             'metodo_pagamento' => $request->metodo_pagamento,
             'data_movimento' => date('Y-m-d'),
             'estado' => "on",

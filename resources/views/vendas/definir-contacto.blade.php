@@ -59,6 +59,8 @@
                                 <th>#</th>
                                 <th>Produto</th>
                                 <th>Quantidade</th>
+                                <th>Preço Unitário</th>
+                                <th>Total</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -69,6 +71,8 @@
                                         <th>{{ $item['produto_id'] }}</th>
                                         <th>{{ $item['descricao'] }}</th>
                                         <th>{{ $item['quantidade'] }}</th>
+                                        <td>{{ number_format($item['preco_unitario'], 2, ',', '.') }}</th>
+                                            <td>{{ number_format(($item['quantidade']*$item['preco_unitario']),2,',','.') }}</td>
                                         <td>
                                             <a href="/vendas/remover-item/{{ $item['produto_id'] }}" class="btn btn-sm btn-danger">Eliminar</a>
                                         </td>

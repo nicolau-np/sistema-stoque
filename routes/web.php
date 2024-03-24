@@ -37,10 +37,12 @@ Route::get('compras/definir-contacto', [CompraController::class, 'definirContact
 Route::get('compras/remover-item/{id}', [CompraController::class, 'removerItem']);
 Route::resource('compras', CompraController::class);
 
+
 Route::post('vendas/adicionar-item', [VendaController::class, 'adicionarItem']);
 Route::get('vendas/definir-contacto', [VendaController::class, 'definirContacto']);
 Route::get('vendas/remover-item/{id}', [VendaController::class, 'removerItem']);
 Route::resource('vendas', VendaController::class);
+
 
 Route::prefix('reports', function(){
     Route::get('/', [ReportController::class, 'index']);
