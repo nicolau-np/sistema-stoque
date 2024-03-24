@@ -4,13 +4,13 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">{{ 'Adicionar Produtos' }}</h1>
+            <h1 class="h3 mb-0 text-gray-800">{{ 'Definir Contacto' }}</h1>
         </div>
 
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form method="POST" action="/vendas/adicionar-item">
+                <form method="POST" action="/vendas">
                     @method('POST')
                     @csrf
 
@@ -18,28 +18,31 @@
                         @include('include.message')
 
                         <div class="col-md-4 mb-3">
-                            <select name="produto" class="form-control">
-                                <option value="" hidden>Produto</option>
-                                @foreach ($produtos as $produto)
-                                    <option value="{{ $produto->id }}">{{ $produto->descricao }}</option>
+                            <select name="contacto" class="form-control">
+                                <option value="" hidden>Cliente</option>
+                                @foreach ($contactos as $contacto)
+                                    <option value="{{ $contacto->id }}">{{ $contacto->descricao }}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('produto'))
-                                <span class="text-danger">{{ $errors->first('produto') }}</span>
+                            @if ($errors->has('contacto'))
+                                <span class="text-danger">{{ $errors->first('contacto') }}</span>
                             @endif
                         </div>
 
-                        <div class="col-md-2 mb-3">
-                            <input type="number" class="form-control" name="quantidade" placeholder="Qtd." />
-                            @if ($errors->has('quantidade'))
-                                <span class="text-danger">{{ $errors->first('quantidade') }}</span>
+                        <div class="col-md-4 mb-3">
+                            <select name="metodo_pagamento" class="form-control">
+                                <option value="" hidden>Método de Pagamento</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                                <option value="Transferência">Transferência</option>
+                                <option value="Cheque">Cheque</option>
+                            </select>
+                            @if ($errors->has('metodo_pagamento'))
+                                <span class="text-danger">{{ $errors->first('metodo_pagamento') }}</span>
                             @endif
                         </div>
 
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-success">Adicionar</button>
-                            &nbsp;&nbsp;&nbsp;
-                            <a href="/vendas/definir-contacto" class="btn btn-primary">Concluir</a>
+                            <button type="submit" class="btn btn-primary">Finalizar</button>
                         </div>
                     </div>
 
@@ -56,8 +59,6 @@
                                 <th>#</th>
                                 <th>Produto</th>
                                 <th>Quantidade</th>
-                                <th>Preço Unitário</th>
-                                <th>Total</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -65,14 +66,11 @@
                             @if (session('lista_de_produtos'))
                                 @foreach (session('lista_de_produtos') as $kay => $item)
                                     <tr>
-                                        <td>{{ $item['produto_id'] }}</td>
-                                        <td>{{ $item['descricao'] }}</td>
-                                        <td>{{ $item['quantidade'] }}</td>
-                                        <td>{{ number_format($item['preco_unitario'], 2, ',', '.') }}</th>
-                                        <td>{{ number_format(($item['quantidade']*$item['preco_unitario']),2,',','.') }}</td>
+                                        <th>{{ $item['produto_id'] }}</th>
+                                        <th>{{ $item['descricao'] }}</th>
+                                        <th>{{ $item['quantidade'] }}</th>
                                         <td>
-                                            <a href="/vendas/remover-item/{{ $item['produto_id'] }}"
-                                                class="btn btn-sm btn-danger">Eliminar</a>
+                                            <a href="/vendas/remover-item/{{ $item['produto_id'] }}" class="btn btn-sm btn-danger">Eliminar</a>
                                         </td>
                                     </tr>
                                 @endforeach

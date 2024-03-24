@@ -44,14 +44,18 @@ class VendaController extends Controller
     {
         $this->validate($request, [
             'contacto' => 'required|exists:contactos,id',
+            'metodo_pagamento' => 'required|string'
         ], [], [
             'contacto' => 'Fornecedor',
+            'metodo_pagamento' => "Método de Pagamento",
         ]);
         $item_stoque = [];
 
         $stoque = [
             'contacto_id' => $request->contacto,
             'tipo' => "Venda",
+            'total_pagar' => "",
+            'metodo_pagamento' => $request->metodo_pagamento,
             'data_movimento' => date('Y-m-d'),
             'estado' => "on",
         ];
@@ -62,7 +66,7 @@ class VendaController extends Controller
         foreach (Session::get('lista_de_produtos') as $key => $item) {
             $item_stoque['produto_id'] = $item['produto_id'];
             $item_stoque['quantidade'] = $item['quantidade'];
-
+            $item_stoque['preco_unitario'] = $item['preco_unitario'];
             ItemStoque::create($item_stoque);
         }
         Session::forget('lista_de_produtos');
