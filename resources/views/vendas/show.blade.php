@@ -16,10 +16,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-title mb-2"><span class="bold">Data de Movimento:</span>
-                            {{ date('d-m-Y', strtotime($compra->data_movimento)) }}</div>
-                        <div class="col-title mb-2"><span>Fornecedor:</span> {{ $compra->contacto->descricao }}</div>
+                            {{ date('d-m-Y', strtotime($venda->data_movimento)) }}</div>
+                        <div class="col-title mb-2"><span>Cliente:</span> {{ $venda->contacto->descricao }}</div>
                         <div class="col-title mb-2"><span>Total de Produtos:</span>
-                            {{ $compra->itemStoque->count() }}</div>
+                            {{ $venda->itemStoque->count() }}</div>
+                            <div class="col-title mb-2"><span>Total Pago:</span>
+                                {{ number_format($venda->total_pagar, '2',',','.') }}</div>
 
                     <div class="table-responsive lista_de_produtos">
                         <table class="table table-striped">
@@ -28,14 +30,18 @@
                                     <th>#</th>
                                     <th>Produto</th>
                                     <th>Quantidade</th>
+                                    <th>Preço Unitário</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    @foreach ($compra->itemStoque as $item)
+                                    @foreach ($venda->itemStoque as $item)
                                         <tr>
                                             <th>{{ $item->produto_id }}</th>
                                             <th>{{ $item->produto->descricao }}</th>
                                             <th>{{ $item->quantidade }}</th>
+                                            <th>{{ number_format($item->preco_unitario,2,',','.') }}</th>
+                                            <th>{{ number_format(($item->quantidade*$item->preco_unitario),2,',','.') }}</th>
 
                                         </tr>
                                     @endforeach
@@ -46,7 +52,7 @@
                         </div>
                     @if (Auth::user()->nivel_acesso == 'admin')
                         <div class="card-footer">
-                            <form action="/compras/{{ $compra->id }}" method="POST">
+                            <form action="/vendas/{{ $venda->id }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
