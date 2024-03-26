@@ -39,11 +39,8 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-laugh-wink"></i>
-                    </div>
-                    <div class="sidebar-brand-text mx-3">SISToque</div>
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                    <div class="sidebar-brand-text mx-3">Farmácia Lelo</div>
                 </a>
 
                 <!-- Divider -->
@@ -345,7 +342,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; {{ 'Sistema de Stoque ' . date('Y') }}</span>
+                            <span>Copyright &copy; {{ 'Farmácia Lelo - Sistema de Gerenciamento ' . date('Y') }}</span>
                         </div>
                     </div>
                 </footer>

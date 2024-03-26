@@ -36,3 +36,15 @@
     color: #4B70DD;
     font-weight: bold;
 }
+
+.image-login{
+   display: flex;
+   justify-content: center !important;
+   flex-direction: column !important;
+   align-items: center !important;
+   gap: 10px;
+}
+
+.image-login h4{
+    text-align: center;
+}

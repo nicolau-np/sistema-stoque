@@ -16,7 +16,7 @@ class HomeController extends Controller
         $vendas = Stoque::where(['tipo'=>"Venda",'estado'=>'on'])->get();
         $contactos = Contacto::all();
         $users = User::all();
-        $title = 'SISTEMA DE STOQUE';
+        $title = 'Farmácia Lelo - Sistema de Gerenciamento';
         $menu = 'Home';
         $type = 'home';
 
